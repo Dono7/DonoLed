@@ -27,22 +27,22 @@ void DonoLed::setup() {
   strip.show();
 }
 
-void showStrip() {
+void DonoLed::showStrip() {
    strip.show();
 }
 
-void setPixel(int Pixel, byte red, byte green, byte blue) {
+void DonoLed::setPixel(int Pixel, byte red, byte green, byte blue) {
    strip.setPixelColor(Pixel, strip.Color(red, green, blue));
 }
 
-void setAll(byte red, byte green, byte blue) {
+void DonoLed::setAll(byte red, byte green, byte blue) {
   for(int i = 0; i < NUM_LEDS; i++ ) {
     setPixel(i, red, green, blue);
   }
   showStrip();
 }
 
-void setPixelHeatColor (int Pixel, byte temperature) {
+void DonoLed::setPixelHeatColor (int Pixel, byte temperature) {
   // Scale 'heat' down from 0-255 to 0-191
   byte t192 = round((temperature/255.0)*191);
  
@@ -62,7 +62,7 @@ void setPixelHeatColor (int Pixel, byte temperature) {
 
 
 // Basics
-void CenterToOutside(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+void DonoLed::CenterToOutside(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
   for(int i =((NUM_LEDS-EyeSize)/2); i>=0; i--) {
     setAll(0,0,0);
    
@@ -84,7 +84,7 @@ void CenterToOutside(byte red, byte green, byte blue, int EyeSize, int SpeedDela
   delay(ReturnDelay);
 }
 
-void OutsideToCenter(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+void DonoLed::OutsideToCenter(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
   for(int i = 0; i<=((NUM_LEDS-EyeSize)/2); i++) {
     setAll(0,0,0);
    
@@ -106,7 +106,7 @@ void OutsideToCenter(byte red, byte green, byte blue, int EyeSize, int SpeedDela
   delay(ReturnDelay);
 }
 
-void LeftToRight(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+void DonoLed::LeftToRight(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
   for(int i = 0; i < NUM_LEDS-EyeSize-2; i++) {
     setAll(0,0,0);
     setPixel(i, red/10, green/10, blue/10);
@@ -120,7 +120,7 @@ void LeftToRight(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, i
   delay(ReturnDelay);
 }
 
-void RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+void DonoLed::RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
   for(int i = NUM_LEDS-EyeSize-2; i > 0; i--) {
     setAll(0,0,0);
     setPixel(i, red/10, green/10, blue/10);
@@ -134,7 +134,7 @@ void RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, i
   delay(ReturnDelay);
 }
 
-void FadeToBlack(int ledNo, byte fadeValue) {
+void DonoLed::FadeToBlack(int ledNo, byte fadeValue) {
     uint32_t oldColor;
     uint8_t r, g, b;
     int value;
@@ -151,7 +151,7 @@ void FadeToBlack(int ledNo, byte fadeValue) {
     strip.setPixelColor(ledNo, r,g,b);
 }
 
-void ColorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay) {
+void DonoLed::ColorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay) {
   for(uint16_t i=0; i<NUM_LEDS; i++) {
       setPixel(i, red, green, blue);
       showStrip();
@@ -161,7 +161,7 @@ void ColorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay) {
 
 
 // Pre-saved animations
-void NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay){
+void DonoLed::NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay){
   RightToLeft(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
   LeftToRight(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
   OutsideToCenter(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
@@ -172,7 +172,7 @@ void NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int R
   CenterToOutside(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
 }
 
-void Fire(int Cooling, int Sparking, int SpeedDelay) {
+void DonoLed::Fire(int Cooling, int Sparking, int SpeedDelay) {
   static byte heat[NUM_LEDS];
   int cooldown;
  
@@ -208,13 +208,13 @@ void Fire(int Cooling, int Sparking, int SpeedDelay) {
   delay(SpeedDelay);
 }
 
-void FireLoop(int Cooling, int Sparking, int SpeedDelay, int LoopsCount) {
+void DonoLed::FireLoop(int Cooling, int Sparking, int SpeedDelay, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
     Fire(Cooling, Sparking, SpeedDelay);
   }
 }
 
-void FadeInOut(byte red, byte green, byte blue, int waitTime, int pauseDelay){
+void DonoLed::FadeInOut(byte red, byte green, byte blue, int waitTime, int pauseDelay){
   float r, g, b;
      
   for(int k = 0; k < 256; k=k+2) {
@@ -238,7 +238,7 @@ void FadeInOut(byte red, byte green, byte blue, int waitTime, int pauseDelay){
   }
 }
 
-void MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay) {  
+void DonoLed::MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay) {  
   setAll(0,0,0);
  
   for(int i = 0; i < NUM_LEDS+NUM_LEDS; i++) {
@@ -262,7 +262,7 @@ void MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTra
   }
 }
 
-void Rainbow(int wait, int repetition, int brightness) {
+void DonoLed::Rainbow(int wait, int repetition, int brightness) {
   for(long firstPixelHue = 0; firstPixelHue < 5*65536; firstPixelHue += 256) {
     strip.rainbow(firstPixelHue, repetition, brightness);
     strip.show();
@@ -270,13 +270,13 @@ void Rainbow(int wait, int repetition, int brightness) {
   }
 }
 
-void RainbowLoop(int wait, int repetition, int brightness, int LoopsCount) {
+void DonoLed::RainbowLoop(int wait, int repetition, int brightness, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
     Rainbow(wait, repetition, brightness);
   }
 }
 
-void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
+void DonoLed::Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
   int Pixel = random(NUM_LEDS);
   setPixel(Pixel,red,green,blue);
   showStrip();
@@ -284,18 +284,18 @@ void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
   setPixel(Pixel,0,0,0);
 }
 
-void ColorWipe(byte red, byte green, byte blue, int SpeedDelay) {
+void DonoLed::ColorWipe(byte red, byte green, byte blue, int SpeedDelay) {
   ColorWipeOneWay(red,green,blue, SpeedDelay);
   ColorWipeOneWay(0x00,0x00,0x00, SpeedDelay);
 }
 
-void ColorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount) {
+void DonoLed::ColorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
     ColorWipe(red,green,blue,SpeedDelay);
   }
 }
 
-void FadeOut(int delayTime) {
+void DonoLed::FadeOut(int delayTime) {
   bool allBlack = false;
   
   while (!allBlack) {
@@ -322,7 +322,7 @@ void FadeOut(int delayTime) {
   }
 }
 
-void HeartPulse(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00) {
+void DonoLed::HeartPulse(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00) {
   for (int i = 0; i < pulses; i++) {  
     FadeInOut(red, green, blue, 0, 50);
     FadeInOut(red, green, blue, 0, 50);
@@ -330,7 +330,7 @@ void HeartPulse(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 
   }
 }
 
-void HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount) {
+void DonoLed::HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
     HeartPulse(pulses, delayTime, red, green, blue);
   }
