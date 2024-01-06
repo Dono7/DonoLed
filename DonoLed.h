@@ -34,7 +34,7 @@ class DonoLed {
     void NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int);
     void Fire(int Cooling, int Sparking, int SpeedDelay);
     void FireLoop(int Cooling, int Sparking, int SpeedDelay, int LoopsCount);
-    void FadeInOut(byte red, byte green, byte blue, int waitTime, int);
+    void FadeInOut(byte red, byte green, byte blue, int waitTime, int pauseDelay);
     void MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay);
     void Rainbow(int wait, int repetition, int brightness);
     void RainbowLoop(int wait, int repetition, int brightness, int LoopsCount);
