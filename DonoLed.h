@@ -43,6 +43,7 @@ class DonoLed {
     void ColorWipe(byte red, byte green, byte blue, int SpeedDelay);
     void FadeOut(int delayTime);
     void HeartPulse(int pulses);
+    void HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount);
 
   private:
     int _pin;

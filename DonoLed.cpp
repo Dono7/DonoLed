@@ -322,10 +322,16 @@ void FadeOut(int delayTime) {
   }
 }
 
-void HeartPulse(int pulses) {
+void HeartPulse(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00) {
   for (int i = 0; i < pulses; i++) {  
-    FadeInOut(0xff, 0x15, 0x00, 0, 50);
-    FadeInOut(0xff, 0x15, 0x00, 0, 50);
-    delay(1000);
+    FadeInOut(red, green, blue, 0, 50);
+    FadeInOut(red, green, blue, 0, 50);
+    delay(delayTime);
+  }
+}
+
+void HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount) {
+  for (int i = 0; i < LoopsCount; i++) {
+    HeartPulse(pulses, delayTime, red, green, blue);
   }
 }
