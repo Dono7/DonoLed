@@ -134,7 +134,7 @@ void RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, i
   delay(ReturnDelay);
 }
 
-void fadeToBlack(int ledNo, byte fadeValue) {
+void FadeToBlack(int ledNo, byte fadeValue) {
     uint32_t oldColor;
     uint8_t r, g, b;
     int value;
@@ -151,7 +151,7 @@ void fadeToBlack(int ledNo, byte fadeValue) {
     strip.setPixelColor(ledNo, r,g,b);
 }
 
-void colorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay) {
+void ColorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay) {
   for(uint16_t i=0; i<NUM_LEDS; i++) {
       setPixel(i, red, green, blue);
       showStrip();
@@ -238,7 +238,7 @@ void FadeInOut(byte red, byte green, byte blue, int waitTime, int pauseDelay){
   }
 }
 
-void meteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay) {  
+void MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay) {  
   setAll(0,0,0);
  
   for(int i = 0; i < NUM_LEDS+NUM_LEDS; i++) {
@@ -246,7 +246,7 @@ void meteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTra
     // fade brightness all LEDs one step
     for(int j=0; j<NUM_LEDS; j++) {
       if( (!meteorRandomDecay) || (random(10)>5) ) {
-        fadeToBlack(j, meteorTrailDecay );        
+        FadeToBlack(j, meteorTrailDecay );        
       }
     }
    
@@ -262,7 +262,7 @@ void meteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTra
   }
 }
 
-void rainbow(int wait, int repetition, int brightness) {
+void Rainbow(int wait, int repetition, int brightness) {
   for(long firstPixelHue = 0; firstPixelHue < 5*65536; firstPixelHue += 256) {
     strip.rainbow(firstPixelHue, repetition, brightness);
     strip.show();
@@ -270,9 +270,9 @@ void rainbow(int wait, int repetition, int brightness) {
   }
 }
 
-void rainbowLoop(int wait, int repetition, int brightness, int LoopsCount) {
+void RainbowLoop(int wait, int repetition, int brightness, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
-    rainbow(wait, repetition, brightness);
+    Rainbow(wait, repetition, brightness);
   }
 }
 
@@ -284,14 +284,14 @@ void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
   setPixel(Pixel,0,0,0);
 }
 
-void colorWipe(byte red, byte green, byte blue, int SpeedDelay) {
-  colorWipeOneWay(red,green,blue, SpeedDelay);
-  colorWipeOneWay(0x00,0x00,0x00, SpeedDelay);
+void ColorWipe(byte red, byte green, byte blue, int SpeedDelay) {
+  ColorWipeOneWay(red,green,blue, SpeedDelay);
+  ColorWipeOneWay(0x00,0x00,0x00, SpeedDelay);
 }
 
-void colorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount) {
+void ColorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount) {
   for (int i = 0; i < LoopsCount; i++) {
-    colorWipe(red,green,blue,SpeedDelay);
+    ColorWipe(red,green,blue,SpeedDelay);
   }
 }
 
@@ -322,7 +322,7 @@ void FadeOut(int delayTime) {
   }
 }
 
-void heartPulse(int pulses) {
+void HeartPulse(int pulses) {
   for (int i = 0; i < pulses; i++) {  
     FadeInOut(0xff, 0x15, 0x00, 0, 50);
     FadeInOut(0xff, 0x15, 0x00, 0, 50);

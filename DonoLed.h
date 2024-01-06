@@ -27,22 +27,22 @@ class DonoLed {
     void OutsideToCenter(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay);
     void LeftToRight(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay);
     void RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay);
-    void fadeToBlack(int ledNo, byte fadeValue);
-    void colorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay);
+    void FadeToBlack(int ledNo, byte fadeValue);
+    void ColorWipeOneWay(byte red, byte green, byte blue, int SpeedDelay);
 
     // Pre-saved animations
     void NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int);
     void Fire(int Cooling, int Sparking, int SpeedDelay);
     void FireLoop(int Cooling, int Sparking, int SpeedDelay, int LoopsCount);
     void FadeInOut(byte red, byte green, byte blue, int waitTime, int);
-    void meteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay);
-    void rainbow(int wait, int repetition, int brightness);
-    void rainbowLoop(int wait, int repetition, int brightness, int LoopsCount);
+    void MeteorRain(byte red, byte green, byte blue, byte meteorSize, byte meteorTrailDecay, boolean meteorRandomDecay, int SpeedDelay);
+    void Rainbow(int wait, int repetition, int brightness);
+    void RainbowLoop(int wait, int repetition, int brightness, int LoopsCount);
     void Sparkle(byte red, byte green, byte blue, int SpeedDelay);
-    void colorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount);
-    void colorWipe(byte red, byte green, byte blue, int SpeedDelay);
+    void ColorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount);
+    void ColorWipe(byte red, byte green, byte blue, int SpeedDelay);
     void FadeOut(int delayTime);
-    void heartPulse(int pulses);
+    void HeartPulse(int pulses);
 
   private:
     int _pin;
