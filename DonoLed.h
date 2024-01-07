@@ -42,13 +42,12 @@ class DonoLed {
     void ColorWipeLoop(byte red, byte green, byte blue, int SpeedDelay, int LoopsCount);
     void ColorWipe(byte red, byte green, byte blue, int SpeedDelay);
     void FadeOut(int delayTime);
-    void HeartPulse(int pulses);
-    void HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount);
+    void HeartPulse(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00);
+    void HeartPulseLoop(int pulses, int delayTime = 1000, byte red = 0xff, byte green = 0x15, byte blue = 0x00, int LoopsCount = 1);
 
   private:
-    int _pin;
     int _numLeds;
     Adafruit_NeoPixel strip;
-}
+};
 
 #endif
